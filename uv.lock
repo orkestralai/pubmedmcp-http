@@ -159,8 +159,8 @@ wheels = [
 
 [[package]]
 name = "mcp"
-version = "1.2.0.dev0"
-source = { git = "https://github.com/modelcontextprotocol/python-sdk.git?rev=main#59fff69c3876a0f47b1b25607261cab7dbede33c" }
+version = "1.2.0rc1"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
     { name = "httpx" },
@@ -170,6 +170,10 @@ dependencies = [
     { name = "sse-starlette" },
     { name = "starlette" },
     { name = "uvicorn" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3c/ba/42269d2e87e8ed1920364fdc68a8623701ddf8288de148b21ef3f26aa6df/mcp-1.2.0rc1.tar.gz", hash = "sha256:44dda64e7e61c85884cdc0b3686e8a6dfb1a014d10c4bd35914eba2f24306586", size = 99529 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/5f/d4/3af43558260e2cc7e084a04af41724931d66ae918fd232f5452d89eb2c8f/mcp-1.2.0rc1-py3-none-any.whl", hash = "sha256:4a9621b7625351fceb3cb518142be1f0a0be73db86375b87e7238e99eacbcce5", size = 66234 },
 ]
 
 [[package]]
@@ -230,7 +234,7 @@ wheels = [
 
 [[package]]
 name = "pubmedmcp"
-version = "0.1.1"
+version = "0.1.2"
 source = { editable = "." }
 dependencies = [
     { name = "mcp" },
@@ -246,7 +250,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "mcp", git = "https://github.com/modelcontextprotocol/python-sdk.git?rev=main" },
+    { name = "mcp", specifier = ">=1.2.0rc1" },
     { name = "pubmedclient", specifier = ">=0.2.0" },
 ]
 
