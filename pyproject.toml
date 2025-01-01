@@ -5,7 +5,7 @@ description = "A MCP server for PubMed data"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "mcp",
+    "mcp @ git+https://github.com/modelcontextprotocol/python-sdk.git@main",
     "pubmedclient>=0.2.0",
 ]
 
@@ -16,11 +16,11 @@ build-backend = "hatchling.build"
 [tool.hatch.version]
 path = "src/pubmedmcp/__init__.py"
 
+[tool.hatch.metadata]
+allow-direct-references = true
+
 [project.scripts]
 pubmedmcp = "pubmedmcp.__main__:main"
-
-[tool.uv.sources]
-mcp = { git = "https://github.com/modelcontextprotocol/python-sdk.git", rev = "main" }
 
 [dependency-groups]
 dev = [
