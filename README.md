@@ -15,7 +15,11 @@ Add the following to your `claude_desktop_config.json` file:
     "mcpServers": {
         "pubmedmcp": {
             "command": "uvx",
-            "args": ["--python", "3.12", "pubmedmcp@latest"],
+            "args": ["pubmedmcp@latest"],
+            "env": {
+                "UV_PRERELEASE": "allow",
+                "UV_PYTHON": "3.12"
+            }
         }
     }
 }
