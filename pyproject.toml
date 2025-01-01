@@ -16,9 +16,6 @@ build-backend = "hatchling.build"
 [tool.hatch.version]
 path = "src/pubmedmcp/__init__.py"
 
-[tool.hatch.metadata]
-allow-direct-references = true
-
 [project.scripts]
 pubmedmcp = "pubmedmcp.__main__:main"
 
