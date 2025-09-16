@@ -46,9 +46,9 @@ packages = ["src/pubmedmcp"]
 pubmedmcp = "pubmedmcp.server:main"
 
 [project.urls]
-Homepage = "https://github.com/your-username/pubmedmcp-http-vercel"
-Repository = "https://github.com/your-username/pubmedmcp-http-vercel"
-Issues = "https://github.com/your-username/pubmedmcp-http-vercel/issues"
+Homepage = "https://github.com/orkestralai/pubmedmcp-http"
+Repository = "https://github.com/orkestralai/pubmedmcp-http"
+Issues = "https://github.com/orkestralai/pubmedmcp-http/issues"
 
 [dependency-groups]
 dev = [

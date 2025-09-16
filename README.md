@@ -12,14 +12,14 @@ This MCP server relies on the [pubmedclient](https://github.com/grll/pubmedclien
 
 ## 🚀 Quick Start
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/pubmedmcp-http-vercel)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/orkestralai/pubmedmcp-http)
 
 Or deploy manually:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/pubmedmcp-http-vercel.git
-cd pubmedmcp-http-vercel
+git clone https://github.com/orkestralai/pubmedmcp-http.git
+cd pubmedmcp-http
 
 # Install dependencies
 uv sync
@@ -107,7 +107,7 @@ The server exposes a tool named "search_abstracts" that accepts the following ar
 
 This project is configured for easy deployment to Vercel:
 
-1. **Quick Deploy**: [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/pubmedmcp-http-vercel)
+1. **Quick Deploy**: [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/orkestralai/pubmedmcp-http)
 
 2. **Manual Deploy**:
    ```bash
@@ -172,7 +172,7 @@ curl -X POST https://your-project-name.vercel.app/mcp \
 ### Project Structure
 
 ```
-pubmedmcp-http-vercel/
+pubmedmcp-http/
 ├── api/
 │   └── index.py             # Vercel serverless function handler
 ├── src/pubmedmcp/

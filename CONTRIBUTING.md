@@ -16,8 +16,8 @@ Thank you for your interest in contributing to the PubMed MCP HTTP-streamable se
 1. **Fork the repository** on GitHub
 2. **Clone your fork**:
    ```bash
-   git clone https://github.com/your-username/pubmedmcp-http-vercel.git
-   cd pubmedmcp-http-vercel
+   git clone https://github.com/orkestralai/pubmedmcp-http.git
+   cd pubmedmcp-http
    ```
 
 3. **Install dependencies**:
@@ -118,7 +118,7 @@ We welcome contributions in these areas:
 ## 🔧 Project Structure
 
 ```
-pubmedmcp-http-vercel/
+pubmedmcp-http/
 ├── api/
 │   └── index.py             # Vercel serverless function handler
 ├── src/pubmedmcp/
@@ -193,7 +193,7 @@ python scripts/bump_version.py patch --release
 
 If you have questions about contributing:
 
-1. Check the [Issues](https://github.com/your-username/pubmedmcp-http-vercel/issues) page
+1. Check the [Issues](https://github.com/orkestralai/pubmedmcp-http/issues) page
 2. Create a new issue with the "Question" label
 3. Join discussions in existing issues
 
