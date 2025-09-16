@@ -1,25 +1,44 @@
 #!/usr/bin/env python
+"""
+Version bumping script for PubMed MCP HTTP-vercel project.
+
+This script updates the version in __init__.py and creates a git commit and tag.
+GitHub release creation is optional and requires the gh CLI tool.
+"""
+
 import re
 import sys
 import subprocess
 from pathlib import Path
 
 
-def run_command(command):
+def run_command(command, required=True):
+    """Run a shell command and handle errors."""
     try:
         subprocess.run(command, check=True, shell=True)
+        return True
     except subprocess.CalledProcessError as e:
-        print(f"Error executing command: {command}")
-        print(f"Error: {e}")
-        sys.exit(1)
+        if required:
+            print(f"Error executing command: {command}")
+            print(f"Error: {e}")
+            sys.exit(1)
+        else:
+            print(f"Warning: Command failed: {command}")
+            return False
 
 
-def bump_version(version_type):
+def bump_version(version_type, create_release=False):
+    """Bump version and create git commit/tag."""
     init_file = Path("src/pubmedmcp/__init__.py")
 
     # Read current version
     content = init_file.read_text()
-    current_version = re.search(r'__version__ = ["\']([^"\']+)["\']', content).group(1)
+    version_match = re.search(r'__version__ = ["\']([^"\']+)["\']', content)
+    if not version_match:
+        print("Error: Could not find version in __init__.py")
+        sys.exit(1)
+
+    current_version = version_match.group(1)
     major, minor, patch = map(int, current_version.split("."))
 
     # Update version based on argument
@@ -41,23 +60,33 @@ def bump_version(version_type):
 
     # Git operations
     run_command("git add src/pubmedmcp/__init__.py")
-    run_command(f'git commit -m "release {new_version}: version bump commit"')
+    run_command(f'git commit -m "Bump version to {new_version}"')
     run_command("git push")
     run_command(f"git tag v{new_version}")
     run_command("git push --tags")
 
-    # Create GitHub release using gh CLI
-    run_command(
-        f'gh release create v{new_version} --title "Release {new_version}" --generate-notes'
-    )
-
     print(f"Version bumped from {current_version} to {new_version}")
-    print(f"Git operations completed and GitHub release v{new_version} created")
+    print("Git operations completed")
+
+    # Create GitHub release if requested
+    if create_release:
+        success = run_command(
+            f'gh release create v{new_version} --title "Release {new_version}" --generate-notes',
+            required=False,
+        )
+        if success:
+            print(f"GitHub release v{new_version} created")
+        else:
+            print("GitHub release creation failed (gh CLI may not be installed)")
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: bump_version.py <major|minor|patch>")
+    if len(sys.argv) < 2:
+        print("Usage: bump_version.py <major|minor|patch> [--release]")
+        print("  --release: Create GitHub release (requires gh CLI)")
         sys.exit(1)
 
-    bump_version(sys.argv[1])
+    version_type = sys.argv[1]
+    create_release = "--release" in sys.argv
+
+    bump_version(version_type, create_release)

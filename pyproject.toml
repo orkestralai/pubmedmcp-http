@@ -1,12 +1,32 @@
 [project]
-name = "pubmedmcp"
+name = "pubmedmcp-http-vercel"
 dynamic = ["version"]
-description = "A MCP server for PubMed data"
+description = "A HTTP-streamable MCP server for PubMed data with stateless architecture, optimized for Vercel deployment"
 readme = "README.md"
 requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [
+    {name = "PubMed MCP Contributors"}
+]
+keywords = ["mcp", "pubmed", "ncbi", "vercel", "serverless", "medical-research"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
 dependencies = [
-    "mcp>=1.13.1",
-    "pubmedclient>=0.2.0",
+    "anyio>=4.5",
+    "click>=8.1.0", 
+    "httpx>=0.27.1",
+    "mcp @ git+https://github.com/modelcontextprotocol/python-sdk.git",
+    "pubmedclient @ git+https://github.com/grll/pubmedclient.git",
+    "starlette",
+    "uvicorn"
 ]
 
 [build-system]
@@ -16,8 +36,19 @@ build-backend = "hatchling.build"
 [tool.hatch.version]
 path = "src/pubmedmcp/__init__.py"
 
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pubmedmcp"]
+
 [project.scripts]
-pubmedmcp = "pubmedmcp.__main__:main"
+pubmedmcp = "pubmedmcp.server:main"
+
+[project.urls]
+Homepage = "https://github.com/your-username/pubmedmcp-http-vercel"
+Repository = "https://github.com/your-username/pubmedmcp-http-vercel"
+Issues = "https://github.com/your-username/pubmedmcp-http-vercel/issues"
 
 [dependency-groups]
 dev = [
